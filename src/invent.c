@@ -189,7 +189,9 @@ struct obj **potmp, **pobj;
 			    / (otmp->quan + obj->quan);
 
 		otmp->quan += obj->quan;
-		
+
+		otmp->known |= obj->known;
+		otmp->bknown |= obj->bknown;
 		otmp->rknown |= obj->rknown;
 		otmp->dknown |= obj->dknown;
 #ifdef GOLDOBJ
@@ -5814,10 +5816,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	
 	if(obj->sknown || otmp->sknown) obj->sknown = otmp->sknown = 1;
 	
-	if(obj->known == otmp->known ||
-		!objects[otmp->otyp].oc_uses_known) {
-		return((boolean)(objects[obj->otyp].oc_merge));
-	} else return(FALSE);
+        return((boolean)(objects[obj->otyp].oc_merge));
 }
 
 boolean
