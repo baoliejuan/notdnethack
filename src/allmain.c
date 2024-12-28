@@ -1876,7 +1876,9 @@ moveloop()
 	// printSanAndInsight();
 	// printEtraits();
     for(;;) {/////////////////////////MAIN LOOP/////////////////////////////////
+#ifdef LIMIT_IPS
 	if (!iflags.debug_fuzzer) gosleep();
+#endif
     hpDiff = u.uhp;
 	get_nh_event();
 #ifdef POSITIONBAR
