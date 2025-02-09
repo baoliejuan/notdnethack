@@ -1959,7 +1959,7 @@ level_difficulty()
 		|| Role_if(PM_MADMAN))
 		&& u.ulevel < 14)
 	)
-		dpth += 10;
+		dpth += 5;
 
 	return max(1, dpth);
 }
