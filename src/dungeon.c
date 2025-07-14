@@ -692,7 +692,7 @@ struct proto_dungeon * pd;
 	select = !rn2(pd->tmpdungeon[i].alternates - altnum + 1);
 
 	/* are we a special case? */
-	if (!strcmp(dgn_name, "Chaos Quest") && flags.chaosvar && (wizard || is_june())) {
+	if (!strcmp(dgn_name, "Chaos Quest") && flags.chaosvar) {
 		// chaosvar is incremented by 1 so that all variants are nonzero in the option
 		// select if alt_i == our chosen version
 		select = (altnum == (flags.chaosvar-1));
