@@ -1072,36 +1072,7 @@ int how;
 	if (how < PANICKED) u.umortality++;
 	if (Lifesaved && (how <= GENOCIDED)) {
 		pline("But wait...");
-		if(uarmh && uarmh->oartifact == ART_HELM_OF_UNDEATH) {
-			otmp = uarmh;
-			if (!(
-					(mvitals[PM_DEATH_KNIGHT].mvflags & G_GENOD) ||/* G_EXTINCT okay */
-					(Unchanging) ||
-					is_undead(youracedata)
-			)) {
-				You_feel("a curse fall upon your soul!");
-				polymon(PM_DEATH_KNIGHT);
-				change_gevurah(16); //cheated death extra (20 total).
-				HUnchanging |= FROMOUTSIDE;
-				lsvd = LSVD_DTHK;
-			}
-			else {
-				You_feel("oddly invigorated, and you %s!",
-					how == DISINTEGRATED ? "reconstitute" :
-					how == OVERWOUND ? "reassemble" :
-					"feel much better"
-					);
-				lsvd = LSVD_MISC;
-			}
-			Your("helmet crumbles to dust!");
-			if (otmp->where == OBJ_INVENT)
-				useup(otmp);
-			else {
-				obj_extract_self(otmp);
-				obfree(otmp, (struct obj *)0);
-			}
-		}
-		else if(Check_iaso_lifesaving()){
+		if(Check_iaso_lifesaving()){
 			if(Hallucination){
 				//"I got better..."
 				You("get better.");
@@ -1191,6 +1162,34 @@ int how;
 			You("wish that hadn't happened.");
 			pline("A star flares on your right ring-finger!");
 			uright->spe--;
+		} else if(uarmh && uarmh->oartifact == ART_HELM_OF_UNDEATH) {
+			otmp = uarmh;
+			if (!(
+					(mvitals[PM_DEATH_KNIGHT].mvflags & G_GENOD) ||/* G_EXTINCT okay */
+					(Unchanging) ||
+					is_undead(youracedata)
+			)) {
+				You_feel("a curse fall upon your soul!");
+				polymon(PM_DEATH_KNIGHT);
+				change_gevurah(16); //cheated death extra (20 total).
+				HUnchanging |= FROMOUTSIDE;
+				lsvd = LSVD_DTHK;
+			}
+			else {
+				You_feel("oddly invigorated, and you %s!",
+					how == DISINTEGRATED ? "reconstitute" :
+					how == OVERWOUND ? "reassemble" :
+					"feel much better"
+					);
+				lsvd = LSVD_MISC;
+			}
+			Your("helmet crumbles to dust!");
+			if (otmp->where == OBJ_INVENT)
+				useup(otmp);
+			else {
+				obj_extract_self(otmp);
+				obfree(otmp, (struct obj *)0);
+			}
 		} else if(check_rot(ROT_CENT) && !(mvitals[PM_CENTIPEDE].mvflags & G_GENOD) && !HUnchanging){
 			lsvd = LSVD_MISC;
 			if (how == DISINTEGRATED) pline("A monstrous centipede crawls out of your dust!");
