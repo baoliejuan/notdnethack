@@ -896,8 +896,8 @@ aligntyp alignment;
 			/* skip Callandor for non-males */
 			skip_if(m == ART_CALLANDOR && flags.initgend);
 
-			/* Skip the Mortal Blade, it's an opt-in kind of artifact */
-			skip_if(m == ART_MORTAL_BLADE);
+			/* Skip the Mortal Blade when don't have life saving */
+			skip_if(m == ART_MORTAL_BLADE && !Lifesaved);
 
 			/* skip artifacts that outright hate the player */
 			skip_if((a->aflags & ARTA_HATES) && (urace.selfmask & a->mflagsa));
