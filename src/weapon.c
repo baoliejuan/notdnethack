@@ -4132,6 +4132,15 @@ otyp_type(int otyp)
 	else if(otyp == SHANTA_PATA){
 		CHECK_ALTERNATE_SKILL(P_LONG_SWORD)
 	}
+	else if(otyp == DEMON_CLAW){
+		CHECK_ALTERNATE_SKILL(P_AXE)
+	}
+	else if(otyp == DEVIL_FIST){
+		CHECK_ALTERNATE_SKILL(P_AXE)
+	}
+	else if(otyp == PINCER_STAFF){
+		CHECK_ALTERNATE_SKILL(P_QUARTERSTAFF)
+	}
 
 	return type;
 }
